@@ -1,0 +1,36 @@
+<div class="flex min-h-screen items-center justify-center bg-gray-100">
+    <div class="bg-white shadow-lg rounded-2xl p-8 w-96">
+      <h2 class="text-2xl font-bold mb-6 text-center">Connexion</h2>
+  
+      <form (ngSubmit)="onLogin()" class="flex flex-col space-y-4">
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Adresse e-mail"
+          class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+  
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Mot de passe"
+          class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+  
+        <button
+          type="submit"
+          class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Se connecter
+        </button>
+      </form>
+  
+      <p class="text-center text-sm mt-4">
+        Pas encore de compte ?
+        <a routerLink="/auth/signup" class="text-blue-600 hover:underline">S’inscrire</a>
+      </p>
+    </div>
+  </div>
+  
