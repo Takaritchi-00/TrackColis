@@ -1,0 +1,66 @@
+<div class="flex h-screen bg-white-100">
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-white shadow-md flex flex-col">
+      <!-- LOGO -->
+      <div class="p-6 border-b">
+        <h1 class="text-2xl font-bold text-blue-600">📦EasyColis</h1>
+      </div>
+  
+      <!-- NAVIGATION -->
+      <nav class="flex-1 px-4 py-6 space-y-3">
+        <a href="#" class="block px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 transition">
+          Dashboard
+        </a>
+        <a href="#" class="block px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 transition">
+          Colis
+        </a>
+        <a href="#" class="block px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 transition">
+          Utilisateurs
+        </a>
+      </nav>
+  
+      <!-- FOOTER SIDEBAR -->
+      <div class="px-4 py-6 border-t">
+        <button
+          (click)="logout()"
+          class="w-full bg-sky-500/90 text-white py-2 rounded-lg hover:bg-sky-500/60 transition font-semibold"
+        >
+          Déconnexion
+        </button>
+      </div>
+    </aside>
+  
+    <!-- MAIN CONTENT -->
+    <div class="flex-1 flex flex-col">
+      <!-- HEADER -->
+      <header class="flex justify-end items-center bg-sky-500/90 shadow-sm px-6 py-4">
+        <span class="text-white font-medium">
+          Bonjour, {{ username }}
+        </span>
+      </header>
+  
+      <!-- CONTENT -->
+      <main class="flex-1 p-6 overflow-y-auto">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Dashboard</h2>
+        <p class="text-gray-600 mb-6">
+          Bienvenue sur votre espace EasyColis. Ici vous pouvez gérer vos colis et utilisateurs facilement.
+        </p>
+  
+        <!-- EXEMPLE DE CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Colis en attente</h3>
+            <p class="text-gray-600 text-xl font-bold">12</p>
+          </div>
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Colis livrés</h3>
+            <p class="text-gray-600 text-xl font-bold">34</p>
+          </div>
+          <div class="bg-white shadow-md rounded-lg p-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Utilisateurs</h3>
+            <p class="text-gray-600 text-xl font-bold">58</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>

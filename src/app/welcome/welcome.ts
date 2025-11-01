@@ -10,11 +10,4 @@ import { Router, RouterLink } from '@angular/router';
 export class Welcome {
   constructor(private router: Router) { }
 
-  goToLogin() {
-    this.router.navigate(['/login']);
-  }
-
-  goToSignup() {
-    this.router.navigate(['/signup']);
-  }
 }

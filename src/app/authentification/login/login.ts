@@ -30,10 +30,11 @@ export class Login {
           // Sauvegarder le token JWT dans le localStorage
           if (response.token) {
             localStorage.setItem('token', response.token);
+            localStorage.setItem('username', this.username);
           }
 
-          // Redirection vers la page d’accueil / welcome
-          this.router.navigate(['/welcome']);
+          // Redirection vers la page d’accueil / dashboard
+          this.router.navigate(['/dashboard']);
         },
         (error) => {
           console.error(error);
