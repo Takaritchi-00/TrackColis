@@ -1,81 +1,107 @@
 <div class="p-6 max-w-xl mx-auto bg-white rounded-2xl shadow-md mt-10">
   <h2 class="text-2xl font-semibold mb-6 text-gray-700 text-center">
-    ✏️ Modifier un utilisateur
+    ✏️ {{ isEditMode ? 'Modifier' : 'Créer' }} un utilisateur
   </h2>
 
-  <form *ngIf="!isLoading" [formGroup]="userForm" (ngSubmit)="onSubmit()" class="space-y-4">
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="space-y-4">
+    <!-- Nom -->
     <div>
-      <label class="block text-sm font-medium text-gray-600">Nom</label>
+      <label class="block text-sm font-medium text-gray-600">Nom *</label>
       <input
         type="text"
-        formControlName="nom"
-        class="w-full border rounded-lg p-2"
+        id="nom"
+        name="nom"
+        [(ngModel)]="model.nom"
         required
+        class="w-full border rounded-lg p-2"
       />
     </div>
 
+    <!-- Prénom -->
     <div>
-      <label class="block text-sm font-medium text-gray-600">Prénom</label>
+      <label class="block text-sm font-medium text-gray-600">Prénom *</label>
       <input
         type="text"
-        formControlName="prenom"
-        class="w-full border rounded-lg p-2"
+        id="prenom"
+        name="prenom"
+        [(ngModel)]="model.prenom"
         required
+        class="w-full border rounded-lg p-2"
       />
     </div>
 
+    <!-- Email -->
     <div>
-      <label class="block text-sm font-medium text-gray-600">Email</label>
+      <label class="block text-sm font-medium text-gray-600">Email *</label>
       <input
         type="email"
-        formControlName="email"
-        class="w-full border rounded-lg p-2"
+        id="email"
+        name="email"
+        [(ngModel)]="model.email"
         required
+        class="w-full border rounded-lg p-2"
       />
     </div>
 
+    <!-- Adresse -->
     <div>
-      <label class="block text-sm font-medium text-gray-600">Adresse</label>
+      <label class="block text-sm font-medium text-gray-600">Adresse *</label>
       <input
         type="text"
-        formControlName="adresse"
+        id="adresse"
+        name="adresse"
+        [(ngModel)]="model.adresse"
+        required
         class="w-full border rounded-lg p-2"
       />
     </div>
 
+    <!-- Téléphone -->
     <div>
-      <label class="block text-sm font-medium text-gray-600">Statut</label>
+      <label class="block text-sm font-medium text-gray-600">Téléphone *</label>
+      <input
+        type="text"
+        id="telephone"
+        name="telephone"
+        [(ngModel)]="model.telephone"
+        required
+        class="w-full border rounded-lg p-2"
+      />
+    </div>
+
+    <!-- Statut -->
+    <div>
+      <label class="block text-sm font-medium text-gray-600">Statut *</label>
       <select
-        formControlName="statut"
+        id="statut"
+        name="statut"
+        [(ngModel)]="model.statut"
+        required
         class="w-full border rounded-lg p-2"
       >
-        <option *ngFor="let s of ['Actif', 'Inactif']" [value]="s">
-          {{ s }}
-        </option>
+        <option value="Actif">Actif</option>
+        <option value="Inactif">Inactif</option>
       </select>
     </div>
 
+    <!-- CNI -->
     <div>
-      <label class="block text-sm font-medium text-gray-600">CNI</label>
+      <label class="block text-sm font-medium text-gray-600">CNI *</label>
       <input
         type="text"
-        formControlName="cni"
-        class="w-full border rounded-lg p-2"
+        id="cni"
+        name="cni"
+        [(ngModel)]="model.cni"
         required
-      />
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-600">Téléphone</label>
-      <input
-        type="text"
-        formControlName="telephone"
         class="w-full border rounded-lg p-2"
       />
     </div>
 
-    
+    <!-- Messages de succès / erreur -->
+    <div *ngIf="successMessage" class="text-green-600 font-medium">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="text-red-600 font-medium">{{ errorMessage }}</div>
 
+    <!-- Boutons -->
     <div class="flex justify-between mt-6">
       <button
         type="button"
@@ -84,18 +110,17 @@
       >
         Annuler
       </button>
-
       <button
         type="submit"
+        [disabled]="!userForm.form.valid || isLoading"
         class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        [disabled]="userForm.invalid"
       >
-        Enregistrer
+        {{ isLoading ? 'Enregistrement...' : (isEditMode ? 'Mettre à jour' : 'Créer') }}
       </button>
     </div>
   </form>
 
-  <ng-template #loading>
-    <p class="text-center text-gray-500">Chargement des données...</p>
-  </ng-template>
+  <div *ngIf="isLoading" class="text-center text-gray-500 mt-4">
+    Chargement des données...
+  </div>
 </div>
