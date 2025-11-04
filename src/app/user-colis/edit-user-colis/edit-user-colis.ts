@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgIf } from '@angular/common';
 import { UserColisService } from '../../services/user-colis.service';
+import { NgIf } from '@angular/common';
 import { UserColis } from '../../models/user-colis.model';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-user-colis',
@@ -12,13 +13,19 @@ import { UserColis } from '../../models/user-colis.model';
   styleUrl: './edit-user-colis.scss',
 })
 export class EditUserColis implements OnInit {
-
   userForm!: FormGroup;
-  userId!: number;
+  userId!: number; // Cet id vient de l'URL
   isLoading = true;
-  constructor( private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private userService: UserColisService) { }
+
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserColisService
+  ) {}
 
   ngOnInit(): void {
+    // On récupère l'idUserColis depuis l'URL
     this.userId = +this.route.snapshot.paramMap.get('id')!;
     this.initForm();
     this.loadUserData();
@@ -36,11 +43,12 @@ export class EditUserColis implements OnInit {
       telephone: ['', Validators.required],
     });
   }
+  
 
   loadUserData(): void {
     this.userService.getUserById(this.userId).subscribe({
       next: (user: UserColis) => {
-        this.userForm.patchValue(user);
+        this.userForm.patchValue(user); // On met à jour le formulaire avec idUserColis
         this.isLoading = false;
       },
       error: (error) => {
@@ -54,10 +62,11 @@ export class EditUserColis implements OnInit {
     if (this.userForm.invalid) return;
 
     const updatedUser: UserColis = {
-      ...this.userForm.getRawValue(),
+      ...this.userForm.getRawValue(), // récupère idUserColis aussi
     };
 
-    this.userService.updateUser(this.userId, updatedUser).subscribe({
+    // On utilise idUserColis pour l'appel update
+    this.userService.updateUser(updatedUser.idUserColis!, updatedUser).subscribe({
       next: () => {
         alert('Utilisateur mis à jour avec succès ✅');
         this.router.navigate(['/dashboard/colis']);
@@ -67,5 +76,8 @@ export class EditUserColis implements OnInit {
         alert('Erreur lors de la mise à jour ❌');
       },
     });
+  }
+  cancel() {
+    this.router.navigate(['/dashboard/colis']);
   }
 }

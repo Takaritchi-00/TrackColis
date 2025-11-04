@@ -88,7 +88,7 @@
                 <td class="px-4 py-2">{{ user.cni }}</td>
                 <td class="px-4 py-2">{{ user.telephone }}</td>
                 <td class="px-6 py-3 flex justify-center gap-2">
-                  <a (click)="selectUser(user)" class="text-blue-600 hover:text-blue-800 transition">
+                  <a [routerLink]="['/dashboard/colis/edit', user.idUserColis]" class="text-blue-600 hover:text-blue-800 transition">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/><path d="M20.71 7.04a1.001 1.001 0 0 0 0-1.42L18.37 3.29a1.001 1.001 0 0 0-1.42 0L15.13 5.1l3.75 3.75z"/></svg>
                   </a>
                   <a (click)="deleteUser(user.idUserColis!)" class="text-red-600 hover:text-red-800 transition">

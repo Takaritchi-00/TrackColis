@@ -1,55 +1,101 @@
-<div class="container mx-auto mt-10 max-w-lg">
-    <h2 class="text-xl font-bold mb-6 text-gray-800">Éditer un utilisateur</h2>
-  
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading" class="space-y-5">
-  
-      <!--<div>
-        <label class="block text-sm font-medium text-gray-700">ID</label>
-        <input type="text" formControlName="idUserColis" class="w-full p-2 border rounded bg-gray-200 cursor-not-allowed" />
-      </div> -->
-  
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Nom</label>
-        <input type="text" formControlName="nom" class="w-full p-2 border rounded" required />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Prénom</label>
-        <input type="text" formControlName="prenom" class="w-full p-2 border rounded" required />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Email</label>
-        <input type="email" formControlName="email" class="w-full p-2 border rounded" required />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Adresse</label>
-        <input type="text" formControlName="adresse" class="w-full p-2 border rounded" required />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Statut</label>
-        <input type="text" formControlName="statut" class="w-full p-2 border rounded" required />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium text-gray-700">CNI</label>
-        <input type="text" formControlName="cni" class="w-full p-2 border rounded" required />
-      </div>
-  
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Téléphone</label>
-        <input type="text" formControlName="telephone" class="w-full p-2 border rounded" required />
-      </div>
-  
-      <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700" [disabled]="userForm.invalid">
-        Mettre à jour
-      </button>
-    </form>
-  
-    <div *ngIf="isLoading" class="text-center text-gray-500">
-      Chargement en cours...
+<div class="p-6 max-w-xl mx-auto bg-white rounded-2xl shadow-md mt-10">
+  <h2 class="text-2xl font-semibold mb-6 text-gray-700 text-center">
+    ✏️ Modifier un utilisateur
+  </h2>
+
+  <form *ngIf="!isLoading" [formGroup]="userForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-600">Nom</label>
+      <input
+        type="text"
+        formControlName="nom"
+        class="w-full border rounded-lg p-2"
+        required
+      />
     </div>
-  </div>
-  
+
+    <div>
+      <label class="block text-sm font-medium text-gray-600">Prénom</label>
+      <input
+        type="text"
+        formControlName="prenom"
+        class="w-full border rounded-lg p-2"
+        required
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-600">Email</label>
+      <input
+        type="email"
+        formControlName="email"
+        class="w-full border rounded-lg p-2"
+        required
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-600">Adresse</label>
+      <input
+        type="text"
+        formControlName="adresse"
+        class="w-full border rounded-lg p-2"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-600">Statut</label>
+      <select
+        formControlName="statut"
+        class="w-full border rounded-lg p-2"
+      >
+        <option *ngFor="let s of ['Actif', 'Inactif']" [value]="s">
+          {{ s }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-600">CNI</label>
+      <input
+        type="text"
+        formControlName="cni"
+        class="w-full border rounded-lg p-2"
+        required
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-600">Téléphone</label>
+      <input
+        type="text"
+        formControlName="telephone"
+        class="w-full border rounded-lg p-2"
+      />
+    </div>
+
+    
+
+    <div class="flex justify-between mt-6">
+      <button
+        type="button"
+        (click)="cancel()"
+        class="px-4 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500"
+      >
+        Annuler
+      </button>
+
+      <button
+        type="submit"
+        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+        [disabled]="userForm.invalid"
+      >
+        Enregistrer
+      </button>
+    </div>
+  </form>
+
+  <ng-template #loading>
+    <p class="text-center text-gray-500">Chargement des données...</p>
+  </ng-template>
+</div>
