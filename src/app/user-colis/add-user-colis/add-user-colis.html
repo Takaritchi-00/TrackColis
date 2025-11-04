@@ -12,7 +12,11 @@
   
       <div class="grid grid-cols-2 gap-4">
         <input type="text" formControlName="adresse" placeholder="Adresse" class="input" />
-        <input type="text" formControlName="statut" placeholder="Statut" class="input" />
+        <select formControlName="statut" class="input">
+          <option value="" disabled>-- Choisir un statut --</option>
+          <option value="Actif">Actif</option>
+          <option value="Inactif">Inactif</option>
+        </select>
       </div>
   
       <div class="grid grid-cols-2 gap-4">
