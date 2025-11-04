@@ -9,7 +9,7 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-user-colis',
-  imports: [RouterLink, RouterLinkActive, RouterOutlet, NgFor, NgIf],
+  imports: [RouterLink, NgFor, NgIf],
   templateUrl: './user-colis.html',
   styleUrl: './user-colis.scss',
 })

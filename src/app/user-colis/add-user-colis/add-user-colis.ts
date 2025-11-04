@@ -7,7 +7,7 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-add-user-colis',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule],
   templateUrl: './add-user-colis.html',
   styleUrl: './add-user-colis.scss',
 })
