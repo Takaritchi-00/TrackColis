@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class Authentification {
-  // URL de base de ton API ASP.NET
+  // URL de base de l'API ASP.NET
   private apiUrl = 'https://localhost:7096/api/Authenticate';
 
   constructor(private http: HttpClient, private router: Router) {}

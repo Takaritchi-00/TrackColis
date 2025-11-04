@@ -1,0 +1,29 @@
+<div class="p-6 max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-bold text-blue-600 mb-6">Ajouter un utilisateur</h2>
+    
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="space-y-4">
+  
+      <div class="grid grid-cols-2 gap-4">
+        <input type="text" formControlName="nom" placeholder="Nom" class="input" />
+        <input type="text" formControlName="prenom" placeholder="Prénom" class="input" />
+      </div>
+  
+      <input type="email" formControlName="email" placeholder="Email" class="input" />
+  
+      <div class="grid grid-cols-2 gap-4">
+        <input type="text" formControlName="adresse" placeholder="Adresse" class="input" />
+        <input type="text" formControlName="statut" placeholder="Statut" class="input" />
+      </div>
+  
+      <div class="grid grid-cols-2 gap-4">
+        <input type="text" formControlName="cni" placeholder="CNI" class="input" />
+        <input type="text" formControlName="telephone" placeholder="Téléphone" class="input" />
+      </div>
+  
+      <div class="flex justify-end gap-3 mt-6">
+        <button type="button" (click)="cancel()" class="btn-secondary">Annuler</button>
+        <button type="submit" class="btn-primary" [disabled]="userForm.invalid">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+  
