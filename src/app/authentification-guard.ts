@@ -4,7 +4,7 @@ import { CanActivateFn, Router } from '@angular/router';
 export const authentificationGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
-  // Récupération du token (dans le localStorage, à adapter selon ton cas)
+  // Récupération du token (dans le localStorage)
   const token = localStorage.getItem('token');
 
   // Vérification simple
